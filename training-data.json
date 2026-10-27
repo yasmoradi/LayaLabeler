@@ -1,0 +1,2809 @@
+{
+  "areas": {
+    "area-auth": "authentication, authorization, OAuth, OIDC, and access token validation",
+    "area-blazor": "Blazor, Razor Components",
+    "area-commandlinetools": "Command line tools, dotnet-dev-certs, dotnet-user-jwts, and OpenAPI",
+    "area-dataprotection": "DataProtection",
+    "area-grpc": "GRPC wire-up, templates",
+    "area-healthchecks": "Healthchecks (some bugs also in Extensions repo)",
+    "area-hosting": "Includes Hosting",
+    "area-identity": "Identity and providers",
+    "area-infrastructure": "MSBuild projects/targets, build scripts, CI, Installers and shared framework",
+    "area-middleware": "URL rewrite, redirect, response cache/compression, session, and other general middlewares",
+    "area-minimal": "Includes minimal APIs, endpoint filters, parameter binding, request delegate generator etc",
+    "area-mvc": "MVC, Actions and Controllers, Localization, CORS, most templates",
+    "area-networking": "Includes servers, yarp, json patch, bedrock, websockets, http client factory, and http abstractions",
+    "area-perf": "Performance infrastructure issues",
+    "area-routing": "endpoint routing and URL matching",
+    "area-security": "antiforgery, CSP, and security features other than authentication and authorization",
+    "area-signalr": "SignalR clients and servers",
+    "area-ui-rendering": "MVC Views, Razor Pages"
+  },
+  "issues": [
+    {
+      "number": 70053,
+      "title": "Identity API /manage/2fa ignores IdentityResult from SetTwoFactorEnabledAsync",
+      "area": "area-identity"
+    },
+    {
+      "number": 70052,
+      "title": "RemoteAuthenticationHandler ignores TicketReceivedContext.Fail() and proceeds to sign-in",
+      "area": "area-auth"
+    },
+    {
+      "number": 70047,
+      "title": "Trie routing incorrectly matches endpoints using invariant culture instead of ordinal comparison",
+      "area": "area-routing"
+    },
+    {
+      "number": 70046,
+      "title": "[API Proposal] Add the Fetch API to the typed browser platform APIs for Blazor",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70044,
+      "title": "How Components.Platform should cancel browser operations with a CancellationToken",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70031,
+      "title": "[Blazor] DisplayName/Label: ExpressionMemberAccessor caches every accessor expression instance (memory leak on Blazor Server)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70030,
+      "title": "[API Proposal] Capture pending JSRuntime calls for deferred failure",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70029,
+      "title": "RedisOutputCacheStore force reconnect can release the current connection instead of the failed one",
+      "area": "area-middleware"
+    },
+    {
+      "number": 70027,
+      "title": "Kestrel can deadlock registering a certificate file watch (CertificatePathWatcher._metadataLock vs CompositeChangeToken._callbackLock)",
+      "area": "area-networking"
+    },
+    {
+      "number": 70023,
+      "title": "Streaming SSR: \u0060NavigateTo\u0060 writes the redirection into the middle of the page after the response has started (\u0060OnNavigateTo\u0060 bypasses the response\u0027s buffered writer)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70016,
+      "title": "Microsoft Visual Studio Failed to launch debug adapter \u0022Unable to launch browser\u0022",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70015,
+      "title": "Visual Studio fails to launch browser for ASP.NET Core Blazor apps",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70014,
+      "title": "Visual Studio Insiders blocks ASP.NET builds on unmatched scoped CSS endpoints",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70013,
+      "title": "Blazor Editor Warns that App Needs Restarting When Run Without Debugging and No Longer Running",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70012,
+      "title": "Visual Studio Browse With compiles Blazor project but shows no dialog",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70011,
+      "title": "Visual Studio: Blazor Recognition and Suggestions Generate Errors",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70010,
+      "title": "Blazor .NET 10: Button @onclick Does Not Invoke the Handler Method",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70009,
+      "title": "Azure Maps 4 getMapContainer method fails in Blazor JSInterop",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70008,
+      "title": "PSA \u2014 Syncfusion Blazor 34.2.9\u002B silently sends Application Insights telemetry from Blazor WASM apps. Initially looks like a Blazor Framework Issue.",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70006,
+      "title": "Blazor debugger fails to hit breakpoints in all browsers",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70005,
+      "title": "Blazor WASM debug fails SRI checks with stale staticwebassets.build.json",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70004,
+      "title": "Blazor Server host process terminates (exit code 0xFFFFFFFF) on file \u003Cinput\u003E selection \u2014 only when launched via F5 debug",
+      "area": "area-blazor"
+    },
+    {
+      "number": 70003,
+      "title": "Blazor Web App WASM debug startup hits MONO debugger-agent assertion",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69991,
+      "title": "How Components.Platform should represent Web IDL enums",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69988,
+      "title": "Design Proposal: Analyzer for Forms Incompatible with Enhanced Navigation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69987,
+      "title": "Components.Platform typed browser APIs for Blazor",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69984,
+      "title": "HostString.ToUriComponent does not add brackets to unbracketed IPv6 addresses",
+      "area": "area-networking"
+    },
+    {
+      "number": 69975,
+      "title": "Script and Link Tag Helper globbing cache reuses URLs across different request base paths",
+      "area": "area-ui-rendering"
+    },
+    {
+      "number": 69972,
+      "title": "ASP0022 false positive for \u0060Map\u0060 beside \u0060MapGet\u0060 on the same route pattern",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69971,
+      "title": "Blazor AI components IChatClient construct failed",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69969,
+      "title": "[API Proposal] Add the Screen to the typed browser platform APIs for Blazor",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69967,
+      "title": "[API Proposal] Add the Navigator to the typed browser platform APIs for Blazor",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69962,
+      "title": "Track HTTP/1.1 lazy request-header allocation POC and Crank validation",
+      "area": "area-networking"
+    },
+    {
+      "number": 69959,
+      "title": "Harden skill-evals CI workflow and update Vally dependency",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69956,
+      "title": "Design Proposal: MarkupString JSON Round-Trip Support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69953,
+      "title": "Negotiate LDAP: do not traverse parents of groups that are not security-enabled",
+      "area": "area-auth"
+    },
+    {
+      "number": 69951,
+      "title": "runtime version on startup",
+      "area": "area-networking"
+    },
+    {
+      "number": 69948,
+      "title": "SignalR on IIS in-process reads the local endpoint of a completed long polling request (AccessViolationException in w3wp, 11.0 RC2)",
+      "area": "area-signalr"
+    },
+    {
+      "number": 69947,
+      "title": "Nullable type param warns on use with other parameters (razor components)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69946,
+      "title": "Make Microsoft.AspNetCore.Components.WebView trim/NativeAOT compatible",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69943,
+      "title": "OpenAPI: \u0060required\u0060 is not emitted for properties of a \u0060[FromForm]\u0060 complex type in MVC controllers",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69942,
+      "title": "Clarify rate-limiter ordering with \u0060UseStatusCodePagesWithReExecute\u0060",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69941,
+      "title": "Identity API \u0060/manage/2fa\u0060 returns success when a concurrent update prevents saving changes",
+      "area": "area-identity"
+    },
+    {
+      "number": 69939,
+      "title": "Microsoft.Extensions.Caching.SqlServer 11.0.0 RC still includes unused Azure.Identity",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69938,
+      "title": "[API Proposal] Ensure SSR scopes use HttpNavigationManager and interactive server scopes use RemoteNavigationManager",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69931,
+      "title": "[Blazor] Reconnect UI stuck for good (no further attempts, no Retry) after an attempt whose ConnectCircuit or ResumeCircuit invocation throws",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69930,
+      "title": "Provide a way to have internal Blazor components",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69924,
+      "title": "[API Proposal] Add URL and URLSearchParams browser platform APIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69922,
+      "title": "[API Proposal] Add browser event listeners to the typed browser platform APIs for Blazor",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69919,
+      "title": "MEV should respect JsonConstructorAttribute",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69917,
+      "title": "SignalR JS reuses Azure redirect token at application negotiate endpoint after reconnect",
+      "area": "area-signalr"
+    },
+    {
+      "number": 69913,
+      "title": "Blazor ErrorBoundary clears ErrorContent after Recover when throwing component is nested",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69912,
+      "title": "AutoPause JS initializer has no fingerprinted endpoint, so it is revalidated on every page load",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69902,
+      "title": "JsonPatch (Newtonsoft.Json): \u0060copy\u0060, \u0060test\u0060 and dictionary keys ignore the document\u0027s \u0060ContractResolver\u0060",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69901,
+      "title": "Blazor static form mapping: an empty field cannot bind \u0060null\u0060 to a nullable custom \u0060IParsable\u003CT\u003E\u0060 struct",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69900,
+      "title": "RouteView keeps a stale Body when a page that was a layout becomes the routed page, rendering it twice",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69895,
+      "title": "Harden JWT-formatted OpenID Connect UserInfo responses",
+      "area": "area-auth"
+    },
+    {
+      "number": 69887,
+      "title": "Allow overriding SupportedCultures when so desired",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69885,
+      "title": "Add WebSocket, EventSource, and sendBeacon APIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69884,
+      "title": "Add MessageChannel and BroadcastChannel support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69883,
+      "title": "Add AbortController and AbortSignal support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69882,
+      "title": "Add Fetch, Headers, Request, and Response APIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69881,
+      "title": "Add URL and URLSearchParams support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69880,
+      "title": "Add Credentials and WebAuthn support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69876,
+      "title": "Add Web Locks support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69875,
+      "title": "Add storage management APIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69874,
+      "title": "Add Cache Storage support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69873,
+      "title": "Add IndexedDB support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69872,
+      "title": "Add browser context and capability APIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69869,
+      "title": "Blazor auto-pause fails after navigating to static SSR",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69867,
+      "title": "Package \u0027System.Security.Cryptography.Pkcs\u0027 9.0.11 has a known moderate severity vulnerability when creating 10.0 SqlServer project.",
+      "area": "area-commandlinetools"
+    },
+    {
+      "number": 69864,
+      "title": "OpenAPI: nullable enum parameter with a default value throws InvalidCastException",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69862,
+      "title": "OpenAPI: record constructor default is written to the shared enum component instead of the $ref",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69858,
+      "title": "Backport #61316 (ParseHeaders throws ArgumentOutOfRangeException when CR is the last byte of a pipe segment) to release/8.0 and release/9.0",
+      "area": "area-networking"
+    },
+    {
+      "number": 69857,
+      "title": "Kestrel accepts HTTP/1.1 request lines with no space before the version and silently rewrites the target (regression in #51535)",
+      "area": "area-networking"
+    },
+    {
+      "number": 69849,
+      "title": "\u0060RedisOutputCacheStore\u0060 garbage collection loop ignores disposal, keeping disposed hosts reachable for ~5 minutes",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69846,
+      "title": "Revise \u0060AccessFailedCount\u0060 handling",
+      "area": "area-identity"
+    },
+    {
+      "number": 69844,
+      "title": "[API Proposal] Add the Cookie Store API to the typed browser platform APIs for Blazor",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69842,
+      "title": "Explicitly set \u0060MaxDepth\u0060 when using \u0060Newtonsoft.Json\u0060 for SignalR hub protocol",
+      "area": "area-signalr"
+    },
+    {
+      "number": 69838,
+      "title": "Blazor Server: RemoteJSDataStream is orphaned and ends the circuit when sendJSDataStream initiation throws",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69831,
+      "title": "IIS out-of-process hosting truncates \u0060X-Forwarded-For\u0060 when the forwarded value exceeds \u0060USHORT\u0060",
+      "area": "area-networking"
+    },
+    {
+      "number": 69830,
+      "title": "JsonTranscodingRouteAdapter drops literal constraints from single-segment variables",
+      "area": "area-grpc"
+    },
+    {
+      "number": 69826,
+      "title": "A union that \u0060System.Text.Json\u0060 cannot classify makes every Minimal API route return 500 (and fails startup with MVC)",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69823,
+      "title": "Virtualize AnchorMode.End end scroll is undone by stale spacer correction",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69820,
+      "title": "Kestrel HTTP/1: control characters accepted in header names, chunk extensions, and trailer names; RFC 9110 6.6 forbidden trailer fields stored unfiltered (hardening)",
+      "area": "area-networking"
+    },
+    {
+      "number": 69819,
+      "title": "Kestrel HTTP/1: chunk size greater than Int32.MaxValue produces unhandled IOException (OverflowException) and HTTP 500 instead of 400",
+      "area": "area-networking"
+    },
+    {
+      "number": 69788,
+      "title": "Support collection-length validation for multiple-select inputs in Blazor SSR",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69786,
+      "title": "Microsoft.AspNetCore.OpenApi XML comment generator emits OS-dependent line endings in summary/description",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69785,
+      "title": "Add NavigationOptions.ForceDocumentNavigation for Explicit Document Navigation Across SSR and Interactive Render Modes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69784,
+      "title": "ANCM out-of-process handler can retain a stale backend after the listener process exits",
+      "area": "area-networking"
+    },
+    {
+      "number": 69781,
+      "title": "Editing machine.config \u0022crashes\u0022 the App Pools (shutdown)",
+      "area": "area-networking"
+    },
+    {
+      "number": 69774,
+      "title": "Inject services from a host-owned DI scope into Razor components",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69770,
+      "title": "ErrorBoundary doesn\u0027t catch exceptions from event handlers whose receiver isn\u0027t a component",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69765,
+      "title": "ErrorBoundary doesn\u0027t catch exceptions from event handlers whose receiver isn\u0027t a component",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69764,
+      "title": "Blazor Interactive Server: Component does not re-render after successful SignalR circuit reconnection and state notification",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69763,
+      "title": "CertificateAuthentication: CustomTrustStore/CustomRootTrust is not applied to self-signed client certificates",
+      "area": "area-auth"
+    },
+    {
+      "number": 69762,
+      "title": "ANCM aspnetcorev2.dll 20.0.26234.12 crashes w3wp with heap corruption (double free in FLS callback) when the worker process shuts down",
+      "area": "area-networking"
+    },
+    {
+      "number": 69760,
+      "title": "RouteHandlerAnalyzer: NullReferenceException (AD0001) when the handler is a delegate creation, \u0060new Func\u003Cint, string\u003E(Method)\u0060, or a lambda under a cast",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69759,
+      "title": "Request Delegate Generator: an intercepted \u0060MapFallback\u0060 endpoint is registered with order 0 instead of \u0060int.MaxValue\u0060, and without its fallback metadata",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69758,
+      "title": "Request Delegate Generator: a double parameter defaulting to -0.0 receives \u002B0.0 (the generated fallback is the int expression -0); a decimal -0.0m loses its sign too",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69757,
+      "title": "Request Delegate Generator: \u0060MapFallback(handler)\u0060 and \u0060MapFallback(pattern, handler)\u0060 with handlers of the same signature share one interceptor, build error CS9144",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69756,
+      "title": "Request Delegate Generator: a string bound through [FromQuery], [FromHeader] or [FromRoute] receives null instead of its default value",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69755,
+      "title": "Request Delegate Generator: InvalidCastException at the Map call for a \u0060params\u0060 handler, and for a method converted to a named delegate type or, with a default value, to \u0060Func\u003C\u003E\u0060",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69744,
+      "title": "FormFeature.ReadFormAsync can return a null Task when the body completes on another thread (NullReferenceException in OpenIdConnectHandler)",
+      "area": "area-networking"
+    },
+    {
+      "number": 69739,
+      "title": "The new IISHostLifetime implementation introduced with .NET 10 isn\u0027t logging Microsoft.Hosting.Lifetime events",
+      "area": "area-networking"
+    },
+    {
+      "number": 69737,
+      "title": "Nested wildcard host endpoint is incorrectly selected for a broader host match",
+      "area": "area-routing"
+    },
+    {
+      "number": 69729,
+      "title": "OpenAPI: [Obsolete] on a property leaks \u0060deprecated: true\u0060 into the shared component schema",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69727,
+      "title": "OpenAPI: property-level annotations are emitted inside the \u0060oneOf\u0060 branch for nullable componentized properties",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69720,
+      "title": "OutputCachePolicyBuilder.With re-evaluates its predicate across policy phases",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69718,
+      "title": "Blazor app returns 404 for \u0060 _framework/dotnet-browser-tools/hot-reload-settings.json\u0060 after installing 11.0 RTM",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69717,
+      "title": "Form mapping problems still present in 11.0.0-rc.1: file lists in collection items, root IReadOnlyList\u003CIFormFile\u003E, \u0027]\u0027 in dictionary keys",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69710,
+      "title": "\u0060Http2Connection.ProcessPingFrameAsync\u0060 should validate PING-ACK payload",
+      "area": "area-networking"
+    },
+    {
+      "number": 69707,
+      "title": "Harden ClientCertificateMode config validation",
+      "area": "area-networking"
+    },
+    {
+      "number": 69704,
+      "title": "IIS in-process: first request can observe empty IServerAddressesFeature.Addresses before startup publishes bindings",
+      "area": "area-networking"
+    },
+    {
+      "number": 69701,
+      "title": "[Hardening] Cancel pending cookie renewal when principal validation rejects authentication",
+      "area": "area-auth"
+    },
+    {
+      "number": 69695,
+      "title": "OpenIdConnectHandler.SignOutAsync should only use a saved ID token issued by its own scheme",
+      "area": "area-auth"
+    },
+    {
+      "number": 69692,
+      "title": "HTTP/1.1 infinite KeepAliveTimeout and RequestHeadersTimeout expire on the next heartbeat due to deadline overflow",
+      "area": "area-networking"
+    },
+    {
+      "number": 69684,
+      "title": "WebApplicationFactory sometimes throws ObjectDisposedException instead of the app\u0027s startup exception",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69682,
+      "title": "DBSC: full support for multiple DBSC schemes, including testing and validation",
+      "area": "area-auth"
+    },
+    {
+      "number": 69680,
+      "title": "InvalidOperationException in SaveTempDataFilter in an App that doesn\u0027t seem to use TempData",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69675,
+      "title": "Request Delegate Generator: handlers that differ only by a parameter\u0027s default value share one interceptor, InvalidCastException at startup",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69673,
+      "title": "Default Blazor Web App emits SectionRenderModeMismatch warning for Counter PageTitle",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69671,
+      "title": "Align HttpSys caching with ResponseCaching checks",
+      "area": "area-networking"
+    },
+    {
+      "number": 69666,
+      "title": "Simplify DI-backed rotating server certificate selection in Kestrel",
+      "area": "area-networking"
+    },
+    {
+      "number": 69664,
+      "title": "MVC1001 analyzer should consider interfaces, not only concrete known attributes",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69663,
+      "title": "Expose request timeout timing information through HttpContext.Features",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69657,
+      "title": "[Blazor] Make DefaultComponentPropertyActivator composable",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69655,
+      "title": "WebApplicationFactory.WithWebHostBuilder loses parent Kestrel configuration and CreateClient throws",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69654,
+      "title": "PR reviewer (/review): follow-ups from real runs",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69652,
+      "title": "\u0060DefaultWebSocketManager\u0060 reuses mutable accept context across WebSocket connections",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69635,
+      "title": "Document that WS-Federation remote sign-out (wsignoutcleanup1.0) is unauthenticated and how to restrict or disable it",
+      "area": "area-auth"
+    },
+    {
+      "number": 69630,
+      "title": "OIDC remote sign-out signs out even when SignOutScheme authenticates no session, bypassing sid/iss binding",
+      "area": "area-auth"
+    },
+    {
+      "number": 69624,
+      "title": "SignalR hub methods ignore \u0060[AllowAnonymous]\u0060",
+      "area": "area-signalr"
+    },
+    {
+      "number": 69620,
+      "title": "DBSC session authentication does not preserve the source scheme\u0027s per-request forwarding",
+      "area": "area-auth"
+    },
+    {
+      "number": 69619,
+      "title": "DBSC derived cookie schemes should inherit the source scheme\u0027s DataProtectionProvider",
+      "area": "area-auth"
+    },
+    {
+      "number": 69618,
+      "title": "DBSC derived session cookie should preserve source cookie path",
+      "area": "area-auth"
+    },
+    {
+      "number": 69614,
+      "title": "WsFederationHandler discards AuthenticationProperties replaced in OnSecurityTokenReceived",
+      "area": "area-auth"
+    },
+    {
+      "number": 69611,
+      "title": "Negotiate: bound nested-group recursion depth in LdapAdapter.GetNestedGroups",
+      "area": "area-auth"
+    },
+    {
+      "number": 69597,
+      "title": "Validation: non-success ValidationResult with null ErrorMessage is silently dropped (fail-open)",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69596,
+      "title": "[Blazor] Error UI is shown on a transient connection failure during reconnection when skipNegotiation is used, and stays after a successful reconnect",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69595,
+      "title": "Remove .NET 12 bootstrap assembly pin and re-enable framework tests",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69583,
+      "title": "Add E2E coverage for Components.AI",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69582,
+      "title": "Quarantine Linux Kestrel HTTP/3 and QUIC TLS failures",
+      "area": "area-networking"
+    },
+    {
+      "number": 69577,
+      "title": "Kestrel accepts arbitrary/unknown transfer-codings before a final chunked (TE: identity,chunked / anything,chunked) \u2014 surfaced to app, keep-alive; nginx/HAProxy reject-close [revisit of #43664 decision]",
+      "area": "area-networking"
+    },
+    {
+      "number": 69571,
+      "title": "Error On Building Blazor_WASM Project: mnMicrosoft.NET.Sdk.WebAssembly.Browser.targets",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69549,
+      "title": "\u0022Body was inferred but...\u0022 dependency injection error message incredibly frustrating to debug",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69546,
+      "title": "Partially deployment for Asp.net Core Blazor Web Apps",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69545,
+      "title": "ASP.NET Core Folder Publish Option",
+      "area": "area-networking"
+    },
+    {
+      "number": 69531,
+      "title": "[Validation] Browser feedback and server validation in a static SSR form",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69530,
+      "title": "[Validation] Distinguish async validation failures from invalid values",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69529,
+      "title": "[Validation] Nested-field validation in a static SSR form",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69528,
+      "title": "[Validation] Opt out of static SSR browser validation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69527,
+      "title": "[Validation] Async field validation while editing a form",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69526,
+      "title": "[Validation] Custom validation attribute across browser and server",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69525,
+      "title": "[Validation] Async whole-form validation on submit",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69524,
+      "title": "[Validation] Localized form messages in static and interactive Blazor",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69523,
+      "title": "Razor component endpoints share one mutable \u0060HttpMethodMetadata\u0060, so \u0060RequireCors\u0060 on one app changes every app in the process and can crash matcher construction",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69518,
+      "title": "Cache Tag Helper key collisions for multi-value query parameters containing commas",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69510,
+      "title": "Blazor framework static web assets not included when OutputType is Library",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69509,
+      "title": "RateLimitingMiddleware keeps a disposed app alive",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69508,
+      "title": "Add minimal-diff and Native AOT test guidance for coding agents",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69503,
+      "title": "Design Proposal: Automatically adapt the Blazor Web template to the user\u0027s color scheme",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69501,
+      "title": "Blazor Virtualize can use a disposed DotNetObjectReference during rapid navigation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69496,
+      "title": "Document source-generator wiring and build-gate gotchas in agent instruction files",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69495,
+      "title": "\u0060EF Core UserStore.CreateUserPasskey\u0060 does not set \u0060Aaguid\u0060, so it\u0027s lost on passkey creation",
+      "area": "area-identity"
+    },
+    {
+      "number": 69494,
+      "title": "BlazorWebTemplate_ConditionalPasskeyRegistration reads response body after navigation",
+      "area": "area-identity"
+    },
+    {
+      "number": 69486,
+      "title": "Serializer-faithful OpenAPI inference and validated schema contracts",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69485,
+      "title": "MapStaticAssets produces wrong cache headers (e.g. for Vue UI)",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69481,
+      "title": "MVC: BindNeverAttribute doesn\u0027t work for records",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69473,
+      "title": "Blazor Server: a server-initiated NavigateTo whose interop reply is lost during a transient disconnect terminates the reconnected circuit one minute later",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69488,
+      "title": "[blazor-wasm] A cached empty or error response for a boot resource is reused forever (\u0060force-cache\u0060); the app never boots again, even after a hard reload",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69469,
+      "title": "[Blazor][Components.AI] Correct the AG-UI Dojo frontend tool sample to avoid an unnecessary UIActionBlock",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69459,
+      "title": "[Blazor] .NET 10: NullReferenceException in Renderer.DispatchEventAsync when an event handler has a receiver but a null delegate (tracing path)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69436,
+      "title": "OpenAPI document generation ignores comments on [FromHeader] properties within [AsParameters] bound types, incorrectly placing them in the requestBody part",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69433,
+      "title": "Blazor SSR: exception in OnInitializedAsync during a named-form POST bypasses ErrorBoundary and returns a bare 400 \u0022form not found\u0022",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69432,
+      "title": "[Native AOT] JSInvokable Task completes in .NET but invokeMethodAsync promise never settles",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69420,
+      "title": "Remove inline threat detection workaround after gh-aw update",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69406,
+      "title": "Rework ScriptTagHelper to use proper way of generating fallbacks script (no document.write)",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69405,
+      "title": "API Proposal: JSON Merge Patch (RFC 7396) for ASP.NET Core",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69400,
+      "title": "[Blazor] Update WebAssembly service defaults template to OpenTelemetry 1.19 and remove OTLP workaround",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69393,
+      "title": "Adding external login should require re-authentication",
+      "area": "area-identity"
+    },
+    {
+      "number": 69392,
+      "title": "IIS in-process: first request after startup can get an empty PathBase because IISHttpServer.StartAsync registers callbacks before reading the virtual application path (10.0 regression)",
+      "area": "area-networking"
+    },
+    {
+      "number": 69387,
+      "title": "Blazor reconnect modal uses white instead of the system Canvas color",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69386,
+      "title": "Output caching: authenticated-user check added to DefaultPolicy.ServeResponseAsync in 10.0.9 silently disables custom policies",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69382,
+      "title": "ASP0030 help link redirects to generic Bing page instead of diagnostic guidance",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69381,
+      "title": "QuickGrid issues duplicate ItemsProvider requests during prepend and append refreshes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69380,
+      "title": "QuickGrid Start anchoring does not preserve viewport after prepending rows in Server-rendered modes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69376,
+      "title": "Reauthentication members on the Identity UI SetPassword page model",
+      "area": "area-identity"
+    },
+    {
+      "number": 69373,
+      "title": "Microsoft.AspNetCore.Server.Kestrel.BadRequests",
+      "area": "area-networking"
+    },
+    {
+      "number": 69374,
+      "title": "Microsoft.AspNetCore.Server.Kestrel.BadRequests",
+      "area": "area-networking"
+    },
+    {
+      "number": 69364,
+      "title": "Retry transient network failures when bootstrapping the SignalR Java Gradle distribution",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69363,
+      "title": "Per-property opt out of implicit required validation.",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69360,
+      "title": "Revise (and reduce) aka.ms links for diagnostics",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69351,
+      "title": "CertificateAuthenticationHandler discards TLS-supplied intermediates and re-resolves them via AIA",
+      "area": "area-auth"
+    },
+    {
+      "number": 69347,
+      "title": "CacheView GUID Changes After Form Submission and Page Refresh",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69346,
+      "title": "Update \u0022Key management in ASP.NET Core\u0022 docs to cover revocation and multi-process/-machine scenarios",
+      "area": "area-dataprotection"
+    },
+    {
+      "number": 69343,
+      "title": "Reject semantically duplicate CBOR keys in passkey attestation objects",
+      "area": "area-identity"
+    },
+    {
+      "number": 69341,
+      "title": "Microsoft.AspNetCore.App.Internal.Assets is only injected when .razor files exist at restore time \u2014 the canonical Docker \u0022restore before copying sources\u0022 pattern silently publishes a Blazor app without _framework assets (blazor.web.js \u2192 404)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69325,
+      "title": "Persistent service serialization ignores CircuitOptions.JsonTypeInfoResolvers when reflection is disabled",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69324,
+      "title": "Restore Components.AI references for .NET 12 Preview 1",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69323,
+      "title": "Blazor: RendererSynchronizationContext can be left installed on an unrelated thread-pool thread, breaking Dispatcher mutual exclusion",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69322,
+      "title": "Minimal API [FromForm] silently binds default(T) / null when the parameter type has more than one public constructor",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69320,
+      "title": "Restrict dotnet user-jwts signing-key file permissions on Unix",
+      "area": "area-commandlinetools"
+    },
+    {
+      "number": 69319,
+      "title": "Restore Components.AI references for .NET 12 Preview 1",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69317,
+      "title": "Stray \u0022g\u0022 in the dotnetcli.host.json file of the RazorClassLibrary-CSharp template config file",
+      "area": "area-commandlinetools"
+    },
+    {
+      "number": 69314,
+      "title": "Collapse leading slash runs in the remote authentication return URI",
+      "area": "area-auth"
+    },
+    {
+      "number": 69313,
+      "title": "Collapse leading slash runs in the remote authentication return URI",
+      "area": "area-auth"
+    },
+    {
+      "number": 69309,
+      "title": "Restore Components.AI references for .NET 12 Preview 1",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69304,
+      "title": "Introduce typed browser platform APIs for Blazor, starting with Web Storage",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69303,
+      "title": "Validation source generator: accept validatable type requests from other source generators",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69302,
+      "title": "Virtualize AnchorMode.End does not position at the end after the initial ItemsProvider result",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69285,
+      "title": "[SignalR] Unknown message type wedges the connection when MaximumReceiveMessageSize is set (the default)",
+      "area": "area-signalr"
+    },
+    {
+      "number": 69284,
+      "title": "[SignalR] Client-result invocation IDs are a predictable process-wide counter, and the return-type lookup is not connection-scoped",
+      "area": "area-signalr"
+    },
+    {
+      "number": 69283,
+      "title": "[SignalR] Negative SequenceMessage.SequenceId permanently silences a connection",
+      "area": "area-signalr"
+    },
+    {
+      "number": 69282,
+      "title": "Define middleware state responsibilities during endpoint rerouting and re-execution",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69273,
+      "title": "Certificate validation cache key is not stable across application event callbacks",
+      "area": "area-auth"
+    },
+    {
+      "number": 69270,
+      "title": "Blazor Server Native AOT publish emits detailed trimming and AOT warnings on .NET 11",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69266,
+      "title": "[Blazor][Components.AI] Allow custom handlers to replace structured RichContentBlock content",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69265,
+      "title": "[Blazor][Components.AI] Add a finalization callback for active content block handlers",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69261,
+      "title": "Components.AI net11 package depends on unavailable .NET 12 package",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69259,
+      "title": "RateLimitingMiddleware never disposes the endpoint PartitionedRateLimiter it creates, so every disposed app stays reachable",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69223,
+      "title": "Passkey telemetry: proposed metrics, tags and logging",
+      "area": "area-identity"
+    },
+    {
+      "number": 69218,
+      "title": "Navigating away while a Web Worker operation is running can sometimes cause an unhandled error in the browser console.",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69217,
+      "title": "HtmlAttributePropertyHelper metadata-update handler roots trim-unsafe methods in Native AOT builds",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69214,
+      "title": "Response Caching: include retained cache-key bytes in MemoryCacheEntryOptions.Size",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69195,
+      "title": "Add an analyzer to warn about code that runs after calling NavigationManager.NavigateTo in server side contexts",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69192,
+      "title": "Incorrect cache handling with \u0060Vary: *\u0060 with response compression",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69191,
+      "title": "[Blazor][Components.AI] Add a built-in default renderer for \u0060UIActionBlock\u0060 that auto-invokes client tool calls",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69180,
+      "title": "DBSC registration returns 500 instead of 400 for a proof with invalid UTF-8 in the jwk",
+      "area": "area-auth"
+    },
+    {
+      "number": 69177,
+      "title": "[Validation] Replacing property injection with a custom IComponentPropertyActivator",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69169,
+      "title": "gRPC AuthContext: SAN dNSName extraction relies on parsing X509Extension.Format() text instead of typed API",
+      "area": "area-grpc"
+    },
+    {
+      "number": 69166,
+      "title": "Make dojo app and AiApp handle same E2E tests",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69159,
+      "title": "[Validation] JavaScript functions can return ElementReference to .NET",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69157,
+      "title": "MEV skips validation for constructor parameters that map to a property in base class",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69156,
+      "title": "OpenAPI property-level \u0060[JsonConverter]\u0060 on \u0060[AsParameters]\u0060 enum ignored when the operation has a request body",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69148,
+      "title": "Some CI legs are still running for .md changes",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69145,
+      "title": "RequireClaim ignores identity-specific claim-type comparison",
+      "area": "area-auth"
+    },
+    {
+      "number": 69142,
+      "title": "Static SSR fails to use proxy domain when constructing absolute URIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69140,
+      "title": "BasePath Component Fails to Preserve Sub-path Casing Behind a Reverse Proxy",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69139,
+      "title": "[Validation] Keys and value lifetime for the TempData and session parameter attributes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69138,
+      "title": "[Validation] Session configuration failures for TempData and session parameters",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69137,
+      "title": "[Validation] The TempData cookie",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69136,
+      "title": "[Validation] Property types for the TempData and session parameter attributes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69135,
+      "title": "[Validation] TempData on a streaming page, and switching to session storage",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69134,
+      "title": "[Validation] TempData across a redirect in static SSR",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69133,
+      "title": "[Validation] QuickGrid column item type mismatch",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69132,
+      "title": "[Validation] What QuickGrid\u0027s URL navigation changes for an existing app",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69131,
+      "title": "[Validation] Virtualized QuickGrid: initial position, scrolling and prepended data",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69130,
+      "title": "[Validation] QuickGrid row clicks",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69129,
+      "title": "[Validation] QuickGrid query parameter names",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69128,
+      "title": "[Validation] QuickGrid paging and the Paginator",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69127,
+      "title": "[Validation] QuickGrid sorting through the URL",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69126,
+      "title": "[Validation] CacheView backed by HybridCache",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69125,
+      "title": "[Validation] Components that refuse to be cached in CacheView",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69124,
+      "title": "[Validation] Forms and interactive components inside a CacheView",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69123,
+      "title": "[Validation] Live components inside a CacheView",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69122,
+      "title": "[Validation] CacheView vary-by dimensions",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69121,
+      "title": "[Validation] CacheView cache keys and capacity",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69120,
+      "title": "[Validation] CacheView expiration",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69119,
+      "title": "[Validation] Caching an expensive page section",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69115,
+      "title": "BasePath Component Fails to Trigger Build Error or Documentation Lacks Sufficient Guidelines When Required Namespace Is Missing in .NET 10 to .NET 11 Upgraded Apps",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69113,
+      "title": "MVC F# project build with warning \u0022FS0044: This construct is deprecated\u0022, should update the project template.",
+      "area": "area-mvc"
+    },
+    {
+      "number": 69109,
+      "title": "OutputCacheKeyProvider mutates request query and header values",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69107,
+      "title": "Kestrel Libuv Transport NuGet package is not marked deprecated",
+      "area": "area-networking"
+    },
+    {
+      "number": 69105,
+      "title": "[Validation] IJSObjectReference.DisposeAsync suppresses JSDisconnectedException",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69104,
+      "title": "[Validation] Custom event registration rejects name collision with browser events",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69103,
+      "title": "New Blazor app fails after minor modification",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69101,
+      "title": "[OpenAPI] Nullable struct doesn\u0027t get description in schema",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69100,
+      "title": "Blazor WebAssembly publish fails with InvalidOperationException for publish.dotnet.js",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69092,
+      "title": "[OpenTelemetry] Support configuring sensitive URL query parameters",
+      "area": "area-hosting"
+    },
+    {
+      "number": 69090,
+      "title": "SignalR connection tokens are not bound to the endpoint that negotiated them",
+      "area": "area-signalr"
+    },
+    {
+      "number": 69080,
+      "title": "Schema transformers receive an ignored property\u0027s metadata for a polymorphic discriminator node",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69077,
+      "title": "Enum query-parameter binding in Minimal APIs ignores [JsonConverter], unlike request/response body serialization",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69073,
+      "title": "Add telemetry for ASP.NET Core analyzers to understand usages",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 69072,
+      "title": "Revise JSInterop analzyer",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69061,
+      "title": "RateLimitingMiddleware never disposes the limiter it creates, keeping disposed hosts alive",
+      "area": "area-middleware"
+    },
+    {
+      "number": 69060,
+      "title": "AuthenticationMiddleware should prefer the authentication scheme specified in endpoint metadata",
+      "area": "area-auth"
+    },
+    {
+      "number": 69058,
+      "title": "AgentContext swallows exceptions",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69057,
+      "title": "Fix tool calls",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69056,
+      "title": "Fix\u00A0keyboard and sizing behavior",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69048,
+      "title": "Review passkey logging and instrumentation",
+      "area": "area-identity"
+    },
+    {
+      "number": 69045,
+      "title": "\u0060GetBrowserOptions(HttpContext)\u0060 usage in #68815 does not match the shipped API invocation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69035,
+      "title": "Static SSR: stack overflow \u2014 StaticHtmlRenderer\u0027s HTML walk cycles through a disposed SectionOutletContentRenderer when a section registration races the walk",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69031,
+      "title": "MEV analyzers: warn on polymorphic derived types registered via IJsonTypeInfoResolver",
+      "area": "area-minimal"
+    },
+    {
+      "number": 69023,
+      "title": "Document LDAP group common-name requirements for Negotiate role claims",
+      "area": "area-auth"
+    },
+    {
+      "number": 69018,
+      "title": "[PersistentState] an unreadable persisted value throws during parameter supply, so the component never hydrates and nothing can catch it",
+      "area": "area-blazor"
+    },
+    {
+      "number": 69016,
+      "title": "Support validation of nested collections in Microsoft.Extensions.Validation",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68999,
+      "title": "[Infrastructure] Limit the CI configurations that run when not making code changes",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68980,
+      "title": "Document custom-hive Individual-auth template validation",
+      "area": "area-commandlinetools"
+    },
+    {
+      "number": 68978,
+      "title": "Clarify Blazor backwards compatibility requirements for JS and .NET code",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68976,
+      "title": "RouteHandlerAnalyzer throws IndexOutOfRangeException (AD0001) when the route handler is a method group from a referenced assembly",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68975,
+      "title": "Prevent Microsoft.AspNetCore.App.Internal.Assets from packing without framework assets",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68973,
+      "title": "OpenAPI schema generation marks a required property as nullable when its declared type is an open generic type parameter",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68971,
+      "title": "Blazor.start silently ignores unknown or misspelled startup options",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68965,
+      "title": "HPACK/QPACK Huffman output cap is checked after unbounded Array.Resize doubling (bounded, hardening)",
+      "area": "area-networking"
+    },
+    {
+      "number": 68964,
+      "title": "Authorization execution guard trusts an identity-blind \u0027invoked\u0027 flag: endpoint substitution after UseAuthorization bypasses [Authorize]",
+      "area": "area-auth"
+    },
+    {
+      "number": 68960,
+      "title": "Remove redundant __ASPNETCORE_BROWSER_TOOLS propagation for modern Blazor WebAssembly",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68957,
+      "title": "[API Proposal] Blazor host startup values and initialization pipeline",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68954,
+      "title": "[Blazor] A RenderFragment\u0027s roots cannot be given a \u0060slot\u0060 attribute",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68952,
+      "title": "Design Proposal: #5981 Performance of Rewrite Middleware",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68949,
+      "title": "Document \u0060OpenApiGenerationEnvironment\u0060 MSBuild property",
+      "area": "area-commandlinetools"
+    },
+    {
+      "number": 68943,
+      "title": "Output and Response Caching treat absent and empty query/header values as the same cache key",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68942,
+      "title": "Revise Json Patch handling of the \u0022-\u0022 token",
+      "area": "area-networking"
+    },
+    {
+      "number": 68938,
+      "title": "Kestrel SNI configuration does not canonicalize IDN host names",
+      "area": "area-networking"
+    },
+    {
+      "number": 68936,
+      "title": "Align Device Bound Sessions package with platform prerelease versioning",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68933,
+      "title": "Add missing ExpandoObject test coverage in ObjectVisitorTest",
+      "area": "area-networking"
+    },
+    {
+      "number": 68927,
+      "title": "Blazor - Navigating to same [Authorized] page should not recreate page component",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68924,
+      "title": "[dnceng-bot] Branch \u0060aspnetcore/main\u0060 can\u0027t be mirrored to Azdo fast forward branch",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68916,
+      "title": "CacheView does not apply to HTTP HEAD requests",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68915,
+      "title": "Kestrel leaves ~20% of a 24-core Linux host idle under high-concurrency HTTP/1.1 load",
+      "area": "area-networking"
+    },
+    {
+      "number": 68912,
+      "title": "Cache-key collision in Microsoft.AspNetCore.OutputCaching",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68909,
+      "title": "HEAD requests to streamed Razor components return response headers immediately while GET waits for rendering completion",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68894,
+      "title": "[Blazor] Container Support generates unnecessary Dockerfile for Client project in Interactive WebAssembly and Interactive Auto apps",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68893,
+      "title": "[SignalR Java client]: signalr-messagepack 8.0.24 drops Android 7 support in a patch release",
+      "area": "area-signalr"
+    },
+    {
+      "number": 68892,
+      "title": "[Blazor] Creating Interactive WebAssembly or Auto apps with Container Support triggers missing launchSettings.json error popup",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68881,
+      "title": "Automatic code fixes unavailable for BL0015 in components and BL0016 in all project types (.NET 11)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68879,
+      "title": "Support FromQuery for Minimal API",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68868,
+      "title": "Server action for Blazor wasm like Next.js",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68847,
+      "title": "caching of JWT \u002B Claims",
+      "area": "area-auth"
+    },
+    {
+      "number": 68843,
+      "title": "Preserve structured model binding and validation error information in ModelState",
+      "area": "area-mvc"
+    },
+    {
+      "number": 68820,
+      "title": "[Validation] InputFile OnChange when the user cancels the file picker",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68819,
+      "title": "[Validation] Cancellation and timeouts on WebWorkerClient calls",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68818,
+      "title": "[Validation] Offloading work with the blazorwebworker template",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68817,
+      "title": "[Validation] Blazor Web startup options format in the Server and WebAssembly scripts",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68816,
+      "title": "[Validation] Setting WebAssembly culture, environment and variables from the server",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68815,
+      "title": "[Validation] Setting BrowserOptions from server code",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68814,
+      "title": "[Validation] Building and publishing a Blazor Hybrid app with its own JavaScript modules",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68813,
+      "title": "[Validation] Blazor Hybrid teardown while JavaScript calls are in flight",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68812,
+      "title": "[Validation] Reusing components with render modes in a Blazor Hybrid app",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68811,
+      "title": "[Validation] BasePath when one deployment answers on several path prefixes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68810,
+      "title": "[Validation] BasePath when hosting a Blazor Web App under a sub-path",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68805,
+      "title": "Validation source generator emits ValidatableTypeInfo for records with no validation attributes",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68802,
+      "title": "Issue triage agent maps Blazor component projects to area-ui-rendering",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68801,
+      "title": "Remove the Blazor WebAssembly Service Defaults OTLP export workaround after OpenTelemetry supports async export",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68798,
+      "title": "union keyword: NullableIntOrString with active null fails as interactive-root component parameter in WebAssembly (.NET 11 Preview 7)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68796,
+      "title": "Cookie TempData fails on non-streaming SSR EditForm redirect with legacy navigation behavior",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68793,
+      "title": "FromServicesAttribute isn\u0027t considered for inheritance when applied to a property",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68781,
+      "title": "Components.AI: Check compliance with AI dojo app",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68780,
+      "title": "Components.AI: Allow UI actions to complete without a model follow-up",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68779,
+      "title": "Output Caching query-string key collision on \u0060=\u0060",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68769,
+      "title": "Introduce stream-level rate-limiting for HTTP/2",
+      "area": "area-networking"
+    },
+    {
+      "number": 68765,
+      "title": "Components.AI: Honor ToolApprovalRequestContent.RequiresConfirmation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68764,
+      "title": "Add opt-in credential confirmation for MapIdentityApi 2FA management operations",
+      "area": "area-identity"
+    },
+    {
+      "number": 68761,
+      "title": "HTTP/3: RemoteIpAddress remains unchanged after QUIC connection migration",
+      "area": "area-networking"
+    },
+    {
+      "number": 68756,
+      "title": "Reject duplicate \u0027target\u0027 properties in SignalR hub protocol",
+      "area": "area-signalr"
+    },
+    {
+      "number": 68755,
+      "title": "Validate Passkey Algorithm \u002B CRV when decoding CredentialPublicKey",
+      "area": "area-identity"
+    },
+    {
+      "number": 68745,
+      "title": "BindAsync with nullable value-type not properly selected with RDG",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68741,
+      "title": "Document .NET 11 MEV analyzers",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68708,
+      "title": "[Known Build Error] VirtualizationTest.QuickGrid_InitialIndex_TallContainer_NearEnd_FillsViewportWithoutUserScroll \u2014 top rendered index was -1",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68705,
+      "title": "Customizing the validation error response shape",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68697,
+      "title": "Blazor WebAssembly runtime intermittently fails to start under concurrent page loads (.NET 10)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68694,
+      "title": "Consider clock skew for Identity security stamp validation intervals",
+      "area": "area-identity"
+    },
+    {
+      "number": 68693,
+      "title": "Add ForwardedHeadersOptions.RequireKnownProxyAddress",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68677,
+      "title": "Mobile menu remains open after navigation in Blazor Web App interactive render modes (.NET 11)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68675,
+      "title": "[Blazor Hybrid] WebViewRenderer applies no backpressure \u2014 unacknowledged render batches accumulate without bound",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68674,
+      "title": "[Blazor Hybrid] A single lost render-batch ack permanently corrupts WebViewRenderer\u0027s unacknowledged batch queue",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68673,
+      "title": "Minimal API JSON body binding failure falls through to SPA fallback and returns 405 instead of 400",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68666,
+      "title": "Blazor Web App OpenID Connect sign-in fails with \u0022failed antiforgery validation\u0022 on the form_post callback under .NET 11 automatic CSRF protection",
+      "area": "area-security"
+    },
+    {
+      "number": 68662,
+      "title": "Support email as login identifier in Identity API endpoints",
+      "area": "area-identity"
+    },
+    {
+      "number": 68653,
+      "title": "OpenAPI duplicates a polymorphic union case when the union is used as a property",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68647,
+      "title": "[DirectTLS] run user-callbacks on the threadpool, not on the transport event-pump threads",
+      "area": "area-networking"
+    },
+    {
+      "number": 68639,
+      "title": "gRPC JsonTranscoding: query string parameter from a \u0060oneof\u0060 sibling clears a route-bound field",
+      "area": "area-grpc"
+    },
+    {
+      "number": 68637,
+      "title": "Interactive Server page flickers during navigation in Interactive Auto Blazor app",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68636,
+      "title": "Absolute-form request target with backslash in path is silently normalized by System.Uri instead of being rejected",
+      "area": "area-networking"
+    },
+    {
+      "number": 68623,
+      "title": "Allow Blazor components to specify the default render fragment",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68622,
+      "title": "Recreate a deleted temp directory instead of failing all later buffered requests",
+      "area": "area-networking"
+    },
+    {
+      "number": 68619,
+      "title": "Consider targeting all supported .NET versions in Microsoft.AspNetCore.OpenApi",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68617,
+      "title": "Support \u0060signalAllAcceptedCredentials\u0060 and \u0060signalCurrentUserDetails\u0060 for passkeys",
+      "area": "area-identity"
+    },
+    {
+      "number": 68614,
+      "title": "CORS middleware applies a stale policy decision after pipeline re-execution",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68609,
+      "title": "Validation Message Displays Property Name Instead of Display Attribute Value",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68582,
+      "title": "Authorization-invoked marker is not endpoint-specific",
+      "area": "area-auth"
+    },
+    {
+      "number": 68581,
+      "title": "Authorization is not re-evaluated after a mid-pipeline reroute in implicit-routing minimal hosting",
+      "area": "area-auth"
+    },
+    {
+      "number": 68579,
+      "title": "JsonHubProtocol does not use PayloadSerializerOptions.MaxDepth when parsing invocation envelopes",
+      "area": "area-signalr"
+    },
+    {
+      "number": 68573,
+      "title": "Recycling and Shadow Copy combined lead to race condition, new instance fails to start, error code 0x8000ffff",
+      "area": "area-networking"
+    },
+    {
+      "number": 68568,
+      "title": "libmsalruntime.so and .NET 10.0.11",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68564,
+      "title": "OpenAPI document generation retains collectible endpoint contract assemblies",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68551,
+      "title": "http.server.request.duration reports the error-page route after pipeline re-execution",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68549,
+      "title": "Blazor WebAssembly MSAL 10.0.10 throws uninitialized_public_client_application after Firefox refresh; 10.0.7 works",
+      "area": "area-auth"
+    },
+    {
+      "number": 68545,
+      "title": "[Validation] The template Error page and its persisted RequestId",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68544,
+      "title": "[Validation] PersistentState with AllowUpdates on the template Weather page",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68543,
+      "title": "[Validation] Enabling container support when creating a Blazor Web App",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68541,
+      "title": "[Validation] Rendering MathML in Blazor components",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68536,
+      "title": "[Validation] Empty nullable TimeSpan, Guid, Int128, UInt128 and Half form fields",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68535,
+      "title": "[Validation] PWA service worker when the start page is reached through a redirect",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68530,
+      "title": "[Validation] Scroll position and hash links during enhanced navigation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68529,
+      "title": "[Validation] Navigating away from a page that hosts an interactive component",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68528,
+      "title": "[Validation] Enhanced navigation no longer preloads WebAssembly assets",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68527,
+      "title": "[Validation] data-permanent preserves the marked element\u0027s own attributes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68526,
+      "title": "[Validation] Browser configuration reaching WebAssembly started by a navigation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68516,
+      "title": "[Validation] Navigating between pages that use different render modes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68515,
+      "title": "[Validation] HTTP HEAD requests to Razor component endpoints",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68511,
+      "title": "Signal options for unknown passkey credentials",
+      "area": "area-identity"
+    },
+    {
+      "number": 68507,
+      "title": "Update gRPC dependencies to latest versions",
+      "area": "area-grpc"
+    },
+    {
+      "number": 68498,
+      "title": "Consider honoring two-factor on external-login sign-in in the default Identity UI (currently bypassed for 2FA-enabled accounts)",
+      "area": "area-identity"
+    },
+    {
+      "number": 68497,
+      "title": "Consider honoring two-factor on external-login sign-in in the default Identity UI (currently bypassed for 2FA-enabled accounts)",
+      "area": "area-identity"
+    },
+    {
+      "number": 68490,
+      "title": "[Validation] Analyzer diagnostics for loop iterators captured in closures",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68488,
+      "title": "[Validation] Analyzer diagnostics for authentication state",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68487,
+      "title": "[Validation] Form labels with the DisplayName and Label components",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68486,
+      "title": "[Validation] A new Blazor Web App under a strict Content Security Policy",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68485,
+      "title": "[Validation] Analyzer diagnostics for Virtualize item identity",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68484,
+      "title": "[Validation] Analyzer diagnostics for unnecessary StateHasChanged calls",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68483,
+      "title": "[Validation] Analyzer diagnostics for JavaScript interop",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68482,
+      "title": "[Validation] Showing content per environment with EnvironmentView",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68481,
+      "title": "[Validation] C# unions across JavaScript interop",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68480,
+      "title": "[Validation] C# unions in component parameters and prerendered state",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68479,
+      "title": "Blazor Validation Testing Manual",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68476,
+      "title": "Scope \u0060JSComponentInterop.SetRootComponentParameters\u0060 to JS-registered dynamic roots",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68475,
+      "title": "Propagate \u0060ScrollToItemAsync\u0060 cancellation to pending item-provider work",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68474,
+      "title": "Improve authenticated check on output caching",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68469,
+      "title": "Harden email change in IdentityApiEndpointRouteBuilderExtensions",
+      "area": "area-identity"
+    },
+    {
+      "number": 68458,
+      "title": "Components.AI: Parse streamed text incrementally",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68456,
+      "title": "Upgrading from 10.0.0.10 to 10.0.0.11 Broken href=\u0027~/...\u0027 on \u003Clink\u003E",
+      "area": "area-ui-rendering"
+    },
+    {
+      "number": 68455,
+      "title": "allow CacheView cache expiry",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68449,
+      "title": "Components.AI: Document built-in UI extensibility and theming",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68448,
+      "title": "Components.AI: Add end-to-end coverage for the interaction matrix",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68447,
+      "title": "Components.AI: Build a full built-in UI sample",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68446,
+      "title": "Components.AI: Complete coordinated public API review for built-in UI",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68445,
+      "title": "Components.AI: Correct shell semantics, dismissal, and focus behavior",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68444,
+      "title": "Components.AI: Add responsive page, drawer, bubble, and composer layouts",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68443,
+      "title": "Components.AI: Add automated accessibility coverage",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68440,
+      "title": "Components.AI: Support reduced motion, forced colors, dark mode, and visible focus",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68441,
+      "title": "Components.AI: Support mid-conversation and agent-provided suggestions",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68442,
+      "title": "Components.AI: Add timestamp and feedback decorators",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68439,
+      "title": "Components.AI: Define conversation switching semantics",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68438,
+      "title": "Components.AI: Align shell slots and document theming and attribution hooks",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68437,
+      "title": "Components.AI: Localize built-in UI and replace ad hoc icons",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68435,
+      "title": "Components.AI: Make approvals and reasoning disclosures accessible",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68436,
+      "title": "Components.AI: Make suggestions fill the composer without submitting",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68434,
+      "title": "Components.AI: Implement conversation switching",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68433,
+      "title": "Components.AI: Announce streaming responses without per-token screen-reader spam",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68432,
+      "title": "Components.AI: Add built-in copy, retry, and edit-and-resubmit actions",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68431,
+      "title": "Components.AI: Add built-in message and turn action menus",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68430,
+      "title": "Components.AI: Add RTL and logical-layout support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68428,
+      "title": "Components.AI: Add extensible code-block rendering",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68429,
+      "title": "Components.AI: Implement a reusable microphone composer part",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68427,
+      "title": "Components.AI: Define link and HTML safety for model-generated rich content",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68426,
+      "title": "Components.AI: Implement per-message and per-turn decorator slots",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68425,
+      "title": "Components.AI: Make decorator actions accessible on hover, tap, focus, and keyboard",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68423,
+      "title": "Components.AI: Add a citation and source rendering pattern",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68424,
+      "title": "Components.AI: Design rich-node renderer extensibility",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68421,
+      "title": "Components.AI: Support media nodes inside rich content",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68417,
+      "title": "Components.AI: Add a minimal capability-scoped JS interop module",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68418,
+      "title": "Components.AI: Implement the extensible rich-node renderer",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68420,
+      "title": "Components.AI: Document and sample markdown-to-rich-node integration",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68422,
+      "title": "Components.AI: Design message and turn decorator APIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68419,
+      "title": "Components.AI: Render standalone media through Components.Media",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68416,
+      "title": "Components.AI: Implement explicit per-call tool display modes",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68415,
+      "title": "Components.AI: Correct default plain-text rendering",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68414,
+      "title": "Components.AI: Add accessible media loading, failure, and image affordances",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68413,
+      "title": "Components.AI: Add accessible stateful attachment chips",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68412,
+      "title": "Components.AI: Support scalable attachment transfer, progress, and cancellation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68409,
+      "title": "Components.AI voice input",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68410,
+      "title": "Components.AI: Decide and implement clipboard-image attachment paste",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68411,
+      "title": "Components.AI: Validate attachments and expose configurable limits",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68408,
+      "title": "Components.AI: Add composer overflow and responsive input-part layout",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68407,
+      "title": "Components.AI: Define follow-up queue ownership and attachment semantics",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68406,
+      "title": "Components.AI: Implement atomic follow-up queue state and dispatch",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68405,
+      "title": "Components.AI: Add composer character and token limits",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68404,
+      "title": "Components.AI: Preserve composer drafts across transitions and conversation switches",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68403,
+      "title": "Components.AI: Integrate attachment lifetime with queued follow-ups",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68401,
+      "title": "Components.AI attachment pipeline",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68399,
+      "title": "Components.AI media rendering",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68402,
+      "title": "Components.AI: Render and manage pending follow-up messages",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68400,
+      "title": "Components.AI: Add drag-and-drop attachment acquisition",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68398,
+      "title": "Components.AI: Add per-message identity chrome and conversation semantics",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68397,
+      "title": "Components.AI: Unify safe status and error presentation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68396,
+      "title": "Components.AI: Implement configurable conversation follow behavior",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68395,
+      "title": "Components.AI: Implement reusable send and stop composer controls",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68394,
+      "title": "Components.AI: Virtualize the conversation message list",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68393,
+      "title": "Components.AI: Restore conversations to the last meaningful reading position",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68392,
+      "title": "Components.AI: Design the composable composer API",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68390,
+      "title": "Components.AI: Add jump-to-latest and unread indication",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68391,
+      "title": "Components.AI: Validate long-conversation scenarios against Virtualize",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68389,
+      "title": "Components.AI: Scope streaming renders to the changing message",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68388,
+      "title": "Components.AI: Implement composer sections and cascading context",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68387,
+      "title": "Components.AI: Define and enforce the conversation interaction-state matrix",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68386,
+      "title": "Components.AI: Implement composer keyboard, IME, and autogrow behavior",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68385,
+      "title": "Components.AI: Add AgentContext lifecycle and mutation APIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68383,
+      "title": "Components.AI: Correct turn/message semantics and assign stable identities",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68384,
+      "title": "Components.AI: Represent stopped and incomplete answers explicitly",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68382,
+      "title": "Components.AI follow-up queue",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68381,
+      "title": "Components.AI accessibility and adaptive presentation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68380,
+      "title": "Components.AI composable composer",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68379,
+      "title": "Components.AI content rendering and tool-call presentation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68378,
+      "title": "Components.AI conversation model and rendering foundations",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68377,
+      "title": "Components.AI shells, conversation switching, and responsive layout",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68376,
+      "title": "Components.AI decorators and conversation actions",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68375,
+      "title": "Components.AI attachments, media, and voice",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68374,
+      "title": "Components.AI long-conversation support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68373,
+      "title": "Components.AI product integration and quality gates",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68372,
+      "title": "Components.AI suggestions experience",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68371,
+      "title": "Harden HTTP/2 CR/LF in trailer header values",
+      "area": "area-networking"
+    },
+    {
+      "number": 68369,
+      "title": "Backport OpenAPI fix for array types to .NET 10",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68367,
+      "title": "Consider adding RSA validation to passkeys",
+      "area": "area-identity"
+    },
+    {
+      "number": 68366,
+      "title": "IIS OutOfProcess ANCM: GetProcess() hands out SERVER_PROCESS* without a caller-owned reference",
+      "area": "area-networking"
+    },
+    {
+      "number": 68349,
+      "title": "HostMatcherPolicy builds case-sensitive DFA edges although host matching is case-insensitive",
+      "area": "area-routing"
+    },
+    {
+      "number": 68348,
+      "title": "DisplayName and Label cache localized display names without culture",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68346,
+      "title": "Blazor Web App (InteractiveWebAssembly): Page title flashes to domain name during hydration",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68343,
+      "title": "PrefixContainer.GetKeysFromPrefix does a full linear scan instead of using the existing sorted array",
+      "area": "area-mvc"
+    },
+    {
+      "number": 68342,
+      "title": "Use-after-free: ServerErrorHandler retains a borrowed reference to owner-managed response content",
+      "area": "area-networking"
+    },
+    {
+      "number": 68339,
+      "title": "BL0013 highlights unrelated code at the top of Razor files",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68337,
+      "title": "Blazor AutoPause doesn\u0027t initialize when Interactive Server starts after enhanced navigation",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68332,
+      "title": "[Blazor] Aspire Dashboard Native AOT support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68331,
+      "title": "Add Map and Attribute for QUERY HTTP verb",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68322,
+      "title": "OpenAPI: nullability is dropped for collection elements whose type is componentized",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68314,
+      "title": "Warn when a JwtBearer scheme is configured with multiple issuers sharing one signing-key pool",
+      "area": "area-auth"
+    },
+    {
+      "number": 68305,
+      "title": "Improve malformed-value recovery performance in HTTP header list parsers",
+      "area": "area-networking"
+    },
+    {
+      "number": 68301,
+      "title": "SignalR should reject duplicate client upload stream IDs instead of replacing active streams",
+      "area": "area-signalr"
+    },
+    {
+      "number": 68284,
+      "title": "Support Blazor Server identity changes during SignalR authentication refresh",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68283,
+      "title": "ANCM FILE_WATCHER: app_offline.htm notification match compares buffer capacity instead of string length, making the match path unreachable",
+      "area": "area-networking"
+    },
+    {
+      "number": 68273,
+      "title": "build has dependencies on VS2022 build tools",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68270,
+      "title": "Tighten the HTTP/2 and HTTP/3 \u0060:path\u0060 guard to the printable-ASCII bound",
+      "area": "area-networking"
+    },
+    {
+      "number": 68268,
+      "title": "Support unions in ValidationsGenerator",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68258,
+      "title": "Identity: external login ProviderKey equality is delegated to the database collation",
+      "area": "area-identity"
+    },
+    {
+      "number": 68251,
+      "title": "Build scripts hard-disable MSBuild node reuse, hurting inner-loop perf and blocking MSBuild Server",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68239,
+      "title": "Add new analyzers to help MVC users migrate to TypedResults",
+      "area": "area-mvc"
+    },
+    {
+      "number": 68237,
+      "title": "[API Proposal]: Add asset-path metadata for Razor expansion",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68227,
+      "title": "Components.AI built-in UIs",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68220,
+      "title": "Clarify the value of ConnectionInfo.RemoteIpAddress for HTTP/3 over QUIC/UDP",
+      "area": "area-networking"
+    },
+    {
+      "number": 68215,
+      "title": "Missing release notes for SignalR TS client v10",
+      "area": "area-signalr"
+    },
+    {
+      "number": 68206,
+      "title": "Additional overload for \u0060Created\u0060",
+      "area": "area-mvc"
+    },
+    {
+      "number": 68199,
+      "title": "Manage existing passkeys in MapIdentityApi()",
+      "area": "area-identity"
+    },
+    {
+      "number": 68197,
+      "title": "Passkey endpoints for MapIdentityApi()",
+      "area": "area-identity"
+    },
+    {
+      "number": 68192,
+      "title": "Conditionally mediated passkey creation",
+      "area": "area-identity"
+    },
+    {
+      "number": 68170,
+      "title": "[Blazor] Consume SignalR authentication refresh in Blazor Server circuits",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68169,
+      "title": "[API Proposal]: Aspire Dashboard AoT framework support",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68165,
+      "title": "Passkey signal options for the three WebAuthn signal methods",
+      "area": "area-identity"
+    },
+    {
+      "number": 68157,
+      "title": "Blazor Web App (Auto, per-page render mode) with prerendering disabled causes JAWS to lose focus sync on repeated button presses",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68148,
+      "title": "Kestrel writes response body into a transport \u0060PipeWriter\u0060 buffer it has already \u0060Advance\u0060d past (no intervening \u0060GetSpan\u0060/\u0060GetMemory\u0060)",
+      "area": "area-networking"
+    },
+    {
+      "number": 68147,
+      "title": "OpenAPI schema for forms uses allOf incorrectly",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68137,
+      "title": "Add a way to render a full component sub-tree in Blazor",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68136,
+      "title": "RemoteAuthenticatorView ignores ReturnUrl after successful login in Microsoft.Authentication.WebAssembly.Msal 10.0.10",
+      "area": "area-auth"
+    },
+    {
+      "number": 68130,
+      "title": "Design Proposal for Formatting support for Input",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68128,
+      "title": "Support \u0060signalUnknownCredential\u0060 for revoked passkeys using signals API",
+      "area": "area-identity"
+    },
+    {
+      "number": 68123,
+      "title": "Blazor Serialize state for services DirectScopedResolvedFromRootException issue.",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68118,
+      "title": "HTTP/3 Client migration behind LB",
+      "area": "area-networking"
+    },
+    {
+      "number": 68117,
+      "title": "[API Proposal]: Device Bound Session Credentials (DBSC) for cookie authentication",
+      "area": "area-auth"
+    },
+    {
+      "number": 68112,
+      "title": "Harden CacheTagHelper vary-by-user: cache key can collide for distinct authenticated principals without a stable Identity.Name",
+      "area": "area-mvc"
+    },
+    {
+      "number": 68109,
+      "title": "Serve the well-known passkey endpoints document in Identity",
+      "area": "area-identity"
+    },
+    {
+      "number": 68106,
+      "title": "ApiExplorer loses top-level BinderModelName when expanding complex query parameters",
+      "area": "area-mvc"
+    },
+    {
+      "number": 68105,
+      "title": "TestHost: exception during ReturnResponseMessageAsync\u0027s feature-collection copy orphans the response TCS \u2014 client awaits forever, cancellation cannot break it",
+      "area": "area-networking"
+    },
+    {
+      "number": 68101,
+      "title": "Fix h3 connection-level and stream-level abort locking",
+      "area": "area-networking"
+    },
+    {
+      "number": 68099,
+      "title": "Virtualize: InitialItemIndex is intermittently ignored on fresh page load (startup race with spacer IntersectionObserver callback)",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68094,
+      "title": "add source generator for creating/binding to events of a IJSInProcessObjectReference/IJSObjectReference",
+      "area": "area-blazor"
+    },
+    {
+      "number": 68087,
+      "title": "Remove OpenAPI analyzers in .NET 11",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68084,
+      "title": "Harden RefreshSignInCoreAsync to revalidate cookie always",
+      "area": "area-identity"
+    },
+    {
+      "number": 68080,
+      "title": "Allow user code to access XML document comments generated by the source generator in custom transformer",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68076,
+      "title": "Error Reporting for Minimal APIs Form Binding",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68065,
+      "title": "JsonStringEnumMemberName ignored in OpenAPI schema for query parameters",
+      "area": "area-minimal"
+    },
+    {
+      "number": 68067,
+      "title": "Testcase failure with \u0022Invalid IL code\u0022 error",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68060,
+      "title": "Simplify repo MSBuild infrastructure",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68059,
+      "title": "SignalR not working correctly using native AoT-safe methods",
+      "area": "area-signalr"
+    },
+    {
+      "number": 68054,
+      "title": "AntiforgeryMiddleware needs an escape-hatch for troubleshooting and logging, and customizing the final response",
+      "area": "area-security"
+    },
+    {
+      "number": 68041,
+      "title": "Derive URL Rewrite absolute-target mode from configured literal syntax",
+      "area": "area-middleware"
+    },
+    {
+      "number": 68038,
+      "title": "Allow Kestrel to listen on abstract UNIX socket",
+      "area": "area-networking"
+    },
+    {
+      "number": 68013,
+      "title": "Use Roslyn\u0027s unified ExternalAccess library",
+      "area": "area-infrastructure"
+    },
+    {
+      "number": 68004,
+      "title": "Blazor WASM: page is instantiated twice when navigating between pages with different layouts",
+      "area": "area-blazor"
+    }
+  ]
+}
