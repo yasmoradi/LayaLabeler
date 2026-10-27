@@ -59,15 +59,18 @@ if (firstRun)
     python.WithPipInstaller();
 using var host = builder.Build();
 
+var startup = Stopwatch.StartNew();
 var decision = await AnsiConsole.Status().StartAsync(
     firstRun ? "First run: installing Python 3.12, PyTorch and Laya (about 1.8 GB, once)..." : "Loading Python and Laya into this process...",
     _ => Task.Run(() => host.Services.GetRequiredService<IPythonEnvironment>().Decision()));
+startup.Stop();
 File.WriteAllText(installed, "");
 
 var loaded = Process.GetCurrentProcess().Modules.Cast<ProcessModule>().Select(m => m.ModuleName)
     .Where(name => name.StartsWith("python3", StringComparison.OrdinalIgnoreCase) || name.StartsWith("torch_cpu", StringComparison.OrdinalIgnoreCase));
 AnsiConsole.MarkupLine($"[green]✓[/] Python is running inside this .NET process (PID {Environment.ProcessId}): {string.Join(", ", loaded)}");
 
+var timings = new List<Timing>();
 if (args is ["all"])
     foreach (var issue in saved)
         await ShowAsync(issue.Number.ToString());
@@ -77,6 +80,7 @@ else if (args.Length > 0)
 else
     while (AnsiConsole.Prompt(new TextPrompt<string>("[mediumpurple]Issue #[/] [grey](empty to quit)[/]").AllowEmpty()) is { Length: > 0 } input)
         await ShowAsync(input);
+Report();
 return 0;
 
 async Task ShowAsync(string input)
@@ -94,9 +98,16 @@ async Task ShowAsync(string input)
         var text = issue.Title + "\n\n" + body.Trim();
         text = text[..Math.Min(text.Length, 4_000)]; // Laya reads the first 512 tokens anyway
 
-        var (area, kind) = await AnsiConsole.Status().StartAsync("Laya is deciding...", _ => Task.Run(() => (
-            decision.Choose(text, "Which part of ASP.NET Core does this GitHub issue belong to?", areas),
-            decision.Choose(text, "What kind of GitHub issue is this?", kinds))));
+        var (area, kind, areaTime, kindTime) = await AnsiConsole.Status().StartAsync("Laya is deciding...", _ => Task.Run(() =>
+        {
+            var clock = Stopwatch.StartNew();
+            var area = decision.Choose(text, "Which part of ASP.NET Core does this GitHub issue belong to?", areas);
+            var areaTime = clock.Elapsed;
+            clock.Restart();
+            var kind = decision.Choose(text, "What kind of GitHub issue is this?", kinds);
+            return (area, kind, areaTime, clock.Elapsed);
+        }));
+        timings.Add(new Timing(issue.Number, areaTime, kindTime));
 
         // Bayes: Laya scores how well the text fits each area, the prior says how common the area is.
         var weighted = area.ToDictionary(a => a.Key, a => a.Value * prior[a.Key]);
@@ -108,11 +119,30 @@ async Task ShowAsync(string input)
         AnsiConsole.Write(new Columns(
             Scores("Area", weighted.ToDictionary(w => w.Key, w => w.Value / total), "area-"),
             Scores("Kind", kind, "")).Collapse());
+        AnsiConsole.MarkupLine($"[grey]Decided in {Seconds(areaTime + kindTime)} (area {Seconds(areaTime)}, kind {Seconds(kindTime)})[/]");
     }
     catch (Exception ex) when (ex is InvalidOperationException or System.ComponentModel.Win32Exception)
     {
         AnsiConsole.MarkupLine($"[red]GitHub: {Markup.Escape(ex.Message)}[/] [grey](needs the gh CLI, signed in with gh auth login)[/]");
     }
+}
+
+// How long the decisions took on this machine, and the hardware they ran on.
+void Report()
+{
+    if (timings.Count == 0)
+        return;
+    var sorted = timings.OrderBy(t => t.Area + t.Kind).ToList();
+    var sum = new TimeSpan(timings.Sum(t => (t.Area + t.Kind).Ticks));
+    var (fastest, median, slowest) = (sorted[0], sorted[sorted.Count / 2], sorted[^1]);
+    AnsiConsole.Write(new Rule("[bold]Performance[/]").LeftJustified());
+    AnsiConsole.MarkupLine($"[bold]{timings.Count} issue{(timings.Count == 1 ? "" : "s")}[/] in {Seconds(sum)}: mean {Seconds(sum / timings.Count)} " +
+        $"(area {Seconds(new TimeSpan(timings.Sum(t => t.Area.Ticks)) / timings.Count)}, kind {Seconds(new TimeSpan(timings.Sum(t => t.Kind.Ticks)) / timings.Count)})");
+    AnsiConsole.MarkupLine($"Median {Seconds(median.Area + median.Kind)}, fastest {Seconds(fastest.Area + fastest.Kind)} (#{fastest.Number}), " +
+        $"slowest {Seconds(slowest.Area + slowest.Kind)} (#{slowest.Number})");
+    AnsiConsole.MarkupLine($"[grey]Loading Python and Laya took {Seconds(startup.Elapsed)}.[/]");
+    AnsiConsole.MarkupLine($"[grey]Hardware: {Markup.Escape(CpuName())}, {Environment.ProcessorCount} logical cores, " +
+        $"{GC.GetGCMemoryInfo().TotalAvailableMemoryBytes / 1e9:F0} GB RAM; Laya ran on {Markup.Escape(decision.Device())}[/]");
 }
 
 // Downloads the area labels and ~2,000 recent issues once; commit the resulting training-data.json.
@@ -204,8 +234,21 @@ static Table Scores(string title, IReadOnlyDictionary<string, double> probabilit
     return table;
 }
 
+static string Seconds(TimeSpan time) => $"{time.TotalSeconds:F2} s";
+
+static string CpuName()
+{
+    if (OperatingSystem.IsWindows())
+        return Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\CentralProcessor\0", "ProcessorNameString", null) is string name
+            ? name.Trim() : "unknown CPU";
+    if (File.Exists("/proc/cpuinfo") && File.ReadLines("/proc/cpuinfo").FirstOrDefault(l => l.StartsWith("model name")) is { } line)
+        return line.Split(':', 2)[1].Trim();
+    return System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture + " CPU";
+}
+
 record Label(string Name, string? Description);
 record User(string Type);
 record Issue(int Number, string Title, string? Body, string HtmlUrl, List<Label> Labels, User User, JsonElement? PullRequest);
 record TrainingIssue(int Number, string Title, string Area);
 record TrainingData(Dictionary<string, string> Areas, List<TrainingIssue> Issues);
+record Timing(int Number, TimeSpan Area, TimeSpan Kind);

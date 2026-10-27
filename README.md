@@ -7,13 +7,16 @@ through [CSnakes](https://github.com/tonybaloney/CSnakes). One C# file, one smal
 ```sh
 dotnet run LayaLabeler.cs                # interactive
 dotnet run LayaLabeler.cs -- 69948       # one issue
-dotnet run LayaLabeler.cs -- all         # the 50 issues in issues.json
+dotnet run LayaLabeler.cs -- all         # the 50 issues in issues.json, then a timing report
 dotnet run LayaLabeler.cs -- learn       # refresh training-data.json from GitHub (then commit it)
 ```
 
 Needs the .NET 10 SDK and the [GitHub CLI](https://cli.github.com/) signed in (`gh auth login`); every GitHub
 call goes through `gh api`, so it counts against your 5,000 calls an hour. `issues.json` holds 50 recent
 issues that are not in the training data; those never go to GitHub, any other number costs one call.
+
+Each issue shows how long Laya took to decide it, and every run ends with a short Performance summary: mean
+(area and kind), median, fastest and slowest, the startup time, and the CPU, cores, RAM and torch device.
 
 The first run downloads Python 3.12, PyTorch, Laya and its weights
 (about 1.8 GB); that is the only time pip runs as a separate process. 

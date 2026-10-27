@@ -15,7 +15,8 @@ Setup notes for AI coding agents. Humans: see README.md.
   `%LOCALAPPDATA%\LayaLabeler\venv` (`~/.local/share/LayaLabeler/venv` on Linux/macOS), weights to the
   Hugging Face cache. pip runs only while `venv/.installed` is missing; later runs start no pip process and
   take about 10 seconds. After changing `requirements.txt`, delete that marker so pip runs again.
-- **Success**: a table titled `Area` and one titled `Kind`, each with probabilities, for the issue.
+- **Success**: a table titled `Area` and one titled `Kind`, each with probabilities, for the issue, and at the
+  end a `Performance` summary of the decision times and the hardware they ran on.
 - **Training data**: `dotnet run LayaLabeler.cs -- learn` rewrites `training-data.json` from the newest
   ~2,000 aspnetcore issues and pull requests (about 25 `gh api` calls). Commit the result.
 
