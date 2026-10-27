@@ -1,0 +1,5 @@
+# PyTorch built for ROCm, so Laya runs on an AMD Ryzen AI Max / Radeon 8060S (gfx1151) GPU on Windows.
+# Another Radeon GPU: replace device-gfx1151 with its target, as listed on the index below.
+--extra-index-url https://stable.repo.amd.com/rocm/whl-next/
+torch[device-gfx1151]==2.14.0+rocm10.1.0
+-r requirements.txt

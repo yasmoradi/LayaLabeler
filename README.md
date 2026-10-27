@@ -17,6 +17,15 @@ issues that are not in the training data; those never go to GitHub, any other nu
 
 Each issue shows how long Laya took to decide it, and every run ends with a short Performance summary: mean
 (area and kind), median, fastest and slowest, the startup time, and the CPU, cores, RAM and torch device.
+On a Ryzen AI Max+ 395 the 50 issues take about 60 s on the CPU and 5 s on its Radeon 8060S GPU.
+
+To use that GPU, build the venv with PyTorch for ROCm. This only matters on the first run, so delete an
+existing `%LOCALAPPDATA%\LayaLabeler\venv` first:
+
+```powershell
+$env:LAYA_REQUIREMENTS = "requirements.amd.txt"
+dotnet run LayaLabeler.cs -- all
+```
 
 The first run downloads Python 3.12, PyTorch, Laya and its weights
 (about 1.8 GB); that is the only time pip runs as a separate process. 

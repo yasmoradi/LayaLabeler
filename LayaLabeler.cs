@@ -43,6 +43,8 @@ var kinds = new Dictionary<string, string>
     ["question"] = "the author asks how to do something",
     ["Docs"] = "documentation is missing, wrong or unclear",
 };
+const string AreaQuestion = "Which part of ASP.NET Core does this GitHub issue belong to?";
+const string KindQuestion = "What kind of GitHub issue is this?";
 
 // issues.json holds 50 issues that are not in the training data; those never go to GitHub.
 var saved = JsonSerializer.Deserialize<List<Issue>>(File.ReadAllText(Path.Combine(folder, "issues.json")), json)!;
@@ -55,14 +57,21 @@ var firstRun = !File.Exists(installed);
 var builder = Host.CreateApplicationBuilder();
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
 var python = builder.Services.WithPython().WithHome(folder).FromRedistributable("3.12").WithVirtualEnvironment(venv);
-if (firstRun)
-    python.WithPipInstaller();
+if (firstRun) // LAYA_REQUIREMENTS=requirements.amd.txt builds the venv with PyTorch for AMD GPUs
+    python.WithPipInstaller(Environment.GetEnvironmentVariable("LAYA_REQUIREMENTS") ?? "requirements.txt");
 using var host = builder.Build();
 
 var startup = Stopwatch.StartNew();
 var decision = await AnsiConsole.Status().StartAsync(
     firstRun ? "First run: installing Python 3.12, PyTorch and Laya (about 1.8 GB, once)..." : "Loading Python and Laya into this process...",
-    _ => Task.Run(() => host.Services.GetRequiredService<IPythonEnvironment>().Decision()));
+    _ => Task.Run(() =>
+    {
+        var decision = host.Services.GetRequiredService<IPythonEnvironment>().Decision();
+        // A question's first decision is slow on a GPU (about a second while kernels compile); pay for it here.
+        decision.Choose("warm up", AreaQuestion, areas);
+        decision.Choose("warm up", KindQuestion, kinds);
+        return decision;
+    }));
 startup.Stop();
 File.WriteAllText(installed, "");
 
@@ -101,10 +110,10 @@ async Task ShowAsync(string input)
         var (area, kind, areaTime, kindTime) = await AnsiConsole.Status().StartAsync("Laya is deciding...", _ => Task.Run(() =>
         {
             var clock = Stopwatch.StartNew();
-            var area = decision.Choose(text, "Which part of ASP.NET Core does this GitHub issue belong to?", areas);
+            var area = decision.Choose(text, AreaQuestion, areas);
             var areaTime = clock.Elapsed;
             clock.Restart();
-            var kind = decision.Choose(text, "What kind of GitHub issue is this?", kinds);
+            var kind = decision.Choose(text, KindQuestion, kinds);
             return (area, kind, areaTime, clock.Elapsed);
         }));
         timings.Add(new Timing(issue.Number, areaTime, kindTime));
