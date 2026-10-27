@@ -4,18 +4,20 @@ Setup notes for AI coding agents. Humans: see README.md.
 
 - **Shape**: a .NET 10 file-based app. `LayaLabeler.cs` is the whole C# program; its `#:package` and
   `#:property` lines replace a `.csproj`. `decision.py` is the whole Python side; CSnakes generates the typed
-  `IDecision` wrapper from its type hints and embeds the file. `requirements.txt` and `training-data.json`
-  sit next to them and are read at run time.
-- **Prerequisite**: the .NET 10 SDK or later. Do not install Python; CSnakes downloads CPython 3.12.
-- **Run**: `dotnet run LayaLabeler.cs -- 69948`. Each issue costs one GitHub API call; set `GITHUB_TOKEN`
-  (for example from `gh auth token`) if GitHub answers 403.
+  `IDecision` wrapper from its type hints and embeds the file. `requirements.txt`, `training-data.json`
+  and `issues.json` sit next to them and are read at run time.
+- **Prerequisite**: the .NET 10 SDK or later, and `gh` signed in (`gh auth login`). Do not install Python;
+  CSnakes downloads CPython 3.12.
+- **Run**: `dotnet run LayaLabeler.cs -- 69948`, or `-- all` for every issue in `issues.json`. GitHub is read
+  only through `gh api`, and only for an issue missing from `issues.json` (50 issues not in
+  `training-data.json`, read at run time).
 - **First run** takes 2 to 5 minutes and downloads about 1.8 GB: CPython to `%APPDATA%\CSnakes`, the venv to
   `%LOCALAPPDATA%\LayaLabeler\venv` (`~/.local/share/LayaLabeler/venv` on Linux/macOS), weights to the
-  Hugging Face cache. pip runs only while `venv/.installed` is missing; later runs start no child process and
+  Hugging Face cache. pip runs only while `venv/.installed` is missing; later runs start no pip process and
   take about 10 seconds. After changing `requirements.txt`, delete that marker so pip runs again.
 - **Success**: a table titled `Area` and one titled `Kind`, each with probabilities, for the issue.
 - **Training data**: `dotnet run LayaLabeler.cs -- learn` rewrites `training-data.json` from the newest
-  ~2,000 aspnetcore issues and pull requests (about 25 API calls; use a token). Commit the result.
+  ~2,000 aspnetcore issues and pull requests (about 25 `gh api` calls). Commit the result.
 
 ## Troubleshooting
 

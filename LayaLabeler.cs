@@ -9,7 +9,6 @@
 
 using System.Diagnostics;
 using System.Text.Json;
-using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 
 using Spectre.Console;
@@ -24,11 +23,6 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 const string Repo = "dotnet/aspnetcore";
 var folder = AppContext.GetData("EntryPointFileDirectoryPath") as string ?? AppContext.BaseDirectory;
 var dataFile = Path.Combine(folder, "training-data.json");
-
-using var http = new HttpClient { BaseAddress = new Uri("https://api.github.com/") };
-http.DefaultRequestHeaders.UserAgent.ParseAdd("LayaLabeler");
-if (Environment.GetEnvironmentVariable("GITHUB_TOKEN") is { Length: > 0 } token)
-    http.DefaultRequestHeaders.Authorization = new("Bearer", token);
 var json = new JsonSerializerOptions(JsonSerializerDefaults.Web) { PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower, WriteIndented = true };
 
 if (args is ["learn"])
@@ -49,6 +43,9 @@ var kinds = new Dictionary<string, string>
     ["question"] = "the author asks how to do something",
     ["Docs"] = "documentation is missing, wrong or unclear",
 };
+
+// issues.json holds 50 issues that are not in the training data; those never go to GitHub.
+var saved = JsonSerializer.Deserialize<List<Issue>>(File.ReadAllText(Path.Combine(folder, "issues.json")), json)!;
 
 // Python runs inside this process: CSnakes loads python312.dll into it, and torch's DLLs follow on import.
 // Only the one-time package install runs pip as a separate process.
@@ -71,7 +68,10 @@ var loaded = Process.GetCurrentProcess().Modules.Cast<ProcessModule>().Select(m 
     .Where(name => name.StartsWith("python3", StringComparison.OrdinalIgnoreCase) || name.StartsWith("torch_cpu", StringComparison.OrdinalIgnoreCase));
 AnsiConsole.MarkupLine($"[green]✓[/] Python is running inside this .NET process (PID {Environment.ProcessId}): {string.Join(", ", loaded)}");
 
-if (args.Length > 0)
+if (args is ["all"])
+    foreach (var issue in saved)
+        await ShowAsync(issue.Number.ToString());
+else if (args.Length > 0)
     foreach (var arg in args)
         await ShowAsync(arg);
 else
@@ -88,7 +88,8 @@ async Task ShowAsync(string input)
     }
     try
     {
-        var issue = (await http.GetFromJsonAsync<Issue>($"repos/{Repo}/issues/{number}", json))!;
+        var issue = saved.Find(i => i.Number == number)
+            ?? JsonSerializer.Deserialize<Issue>(await GhAsync($"repos/{Repo}/issues/{number}"), json)!;
         var body = Regex.Replace(issue.Body ?? "", @"<!--.*?-->|### Is there an existing issue for this\?\s*- \[[ xX]\][^\n]*", "", RegexOptions.Singleline);
         var text = issue.Title + "\n\n" + body.Trim();
         text = text[..Math.Min(text.Length, 4_000)]; // Laya reads the first 512 tokens anyway
@@ -108,9 +109,9 @@ async Task ShowAsync(string input)
             Scores("Area", weighted.ToDictionary(w => w.Key, w => w.Value / total), "area-"),
             Scores("Kind", kind, "")).Collapse());
     }
-    catch (HttpRequestException ex)
+    catch (Exception ex) when (ex is InvalidOperationException or System.ComponentModel.Win32Exception)
     {
-        AnsiConsole.MarkupLine($"[red]GitHub: {Markup.Escape(ex.Message)}[/] [grey](set GITHUB_TOKEN if this is a rate limit)[/]");
+        AnsiConsole.MarkupLine($"[red]GitHub: {Markup.Escape(ex.Message)}[/] [grey](needs the gh CLI, signed in with gh auth login)[/]");
     }
 }
 
@@ -130,19 +131,31 @@ async Task LearnAsync()
     AnsiConsole.MarkupLine($"[green]✓[/] Saved {issues.Count} labeled issues (#{issues[^1].Number} to #{issues[0].Number}) to {dataFile}");
 }
 
-// Follows GitHub's Link header: past page 10, plain page numbers are rejected for anonymous callers.
+// Signed-in calls through gh may use plain page numbers past page 10; a short page is the last one.
 async Task<List<T>> GetAllAsync<T>(string url, int maxPages)
 {
     var all = new List<T>();
-    for (string? next = url; next is not null && maxPages-- > 0;)
+    for (var page = 1; page <= maxPages; page++)
     {
-        using var response = await http.GetAsync(next);
-        response.EnsureSuccessStatusCode();
-        all.AddRange((await response.Content.ReadFromJsonAsync<List<T>>(json))!);
-        next = response.Headers.TryGetValues("Link", out var link)
-            && Regex.Match(string.Join(",", link), @"<([^>]+)>;\s*rel=""next""") is { Success: true } m ? m.Groups[1].Value : null;
+        var items = JsonSerializer.Deserialize<List<T>>(await GhAsync($"{url}&page={page}"), json)!;
+        all.AddRange(items);
+        if (items.Count < 100)
+            break;
     }
     return all;
+}
+
+// Every GitHub call goes through the gh CLI as the signed-in user: 5,000 calls an hour instead of 60.
+static async Task<string> GhAsync(string endpoint)
+{
+    var start = new ProcessStartInfo("gh") { RedirectStandardOutput = true, RedirectStandardError = true, StandardOutputEncoding = System.Text.Encoding.UTF8 };
+    start.ArgumentList.Add("api");
+    start.ArgumentList.Add(endpoint);
+    using var gh = Process.Start(start)!;
+    var output = gh.StandardOutput.ReadToEndAsync();
+    var error = gh.StandardError.ReadToEndAsync();
+    await gh.WaitForExitAsync();
+    return gh.ExitCode == 0 ? await output : throw new InvalidOperationException($"gh api {endpoint}: {(await error).Trim()}");
 }
 
 // Each area's option text becomes the title words that occur mostly in that area; its prior is how often it occurs.

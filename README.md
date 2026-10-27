@@ -5,13 +5,17 @@ Suggests an area and a kind label for [dotnet/aspnetcore](https://github.com/dot
 through [CSnakes](https://github.com/tonybaloney/CSnakes). One C# file, one small Python file, no `.csproj`.
 
 ```sh
-export GITHUB_TOKEN=$(gh auth token)     # optional; PowerShell: $env:GITHUB_TOKEN = gh auth token
 dotnet run LayaLabeler.cs                # interactive
 dotnet run LayaLabeler.cs -- 69948       # one issue
+dotnet run LayaLabeler.cs -- all         # the 50 issues in issues.json
 dotnet run LayaLabeler.cs -- learn       # refresh training-data.json from GitHub (then commit it)
 ```
 
-Needs the .NET 10 SDK, nothing else. The first run downloads Python 3.12, PyTorch, Laya and its weights
+Needs the .NET 10 SDK and the [GitHub CLI](https://cli.github.com/) signed in (`gh auth login`); every GitHub
+call goes through `gh api`, so it counts against your 5,000 calls an hour. `issues.json` holds 50 recent
+issues that are not in the training data; those never go to GitHub, any other number costs one call.
+
+The first run downloads Python 3.12, PyTorch, Laya and its weights
 (about 1.8 GB); that is the only time pip runs as a separate process. 
 
 **From then on Python is a DLL inside the .NET process**
